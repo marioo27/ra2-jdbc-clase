@@ -1,5 +1,9 @@
 package es.util;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,18 +25,32 @@ import es.ciudadescolar.instituto.Alumno;
 public class DbManager {
     private static final Logger LOG = LoggerFactory.getLogger(DbManager.class);
 
+    private static final String DRIVER = "driver";
+    private static final String URL = "url";
+
     private Connection con = null;
 
     public DbManager() {
+        Properties prop = new Properties();
+
         try {
+            prop.load(new FileInputStream("conexionBD.properties"));
             // Registramos Driver ya que en las versiones antiguas es necesario
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://192.168.203.77:3306/dam2_2425", "dam2", "dam2");
+            Class.forName(prop.getProperty(DRIVER));
+            // con =
+            // DriverManager.getConnection("jdbc:mysql://192.168.203.77:3306/dam2_2425",
+            // "dam2", "dam2");
+
+            // Para usar este metodo el fichero properties tiene que tener "user" y
+            // "password" sino da error
+            con = DriverManager.getConnection(prop.getProperty(URL), prop);
             LOG.debug("Conexion establecida con exito");
         } catch (ClassNotFoundException e) {
             LOG.error("Error al registrar el Driver [" + e.getMessage() + "]");
         } catch (SQLException e) {
             LOG.error("Error al establecer la conexion con la Base de Datos [" + e.getMessage() + "]");
+        } catch (IOException e) {
+            LOG.error("Error al cargar el fichero de propiedades de la conexion [" + e.getMessage() + "]");
         }
     }
 
@@ -45,7 +64,7 @@ public class DbManager {
         if (con != null) {
             try {
                 staAlumnos = con.createStatement();
-                rstAlumnos = staAlumnos.executeQuery("SELECT expediente, nombre, fecha_nac FROm alumnos");
+                rstAlumnos = staAlumnos.executeQuery(SQL.recuperaAlumnos);
 
                 if (rstAlumnos.next()) {
                     alumnos = new ArrayList<>();
@@ -54,10 +73,10 @@ public class DbManager {
                         // En el get del ResultSet se puede poner el indice o el nombre de la columna
                         alumno.setExpediente(Integer.valueOf(rstAlumnos.getInt("expediente")));
                         alumno.setNombre(rstAlumnos.getString("nombre"));
-                       
+
                         if (rstAlumnos.getDate("fecha_nac") != null)
                             alumno.setFecha_nac(rstAlumnos.getDate("fecha_nac").toLocalDate());
-                        
+
                         alumnos.add(alumno);
                     } while (rstAlumnos.next());
                 }
