@@ -2,10 +2,15 @@ package es.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import es.ciudadescolar.instituto.Alumno;
 
 /**
  * @author Mario Garcia
@@ -27,6 +32,34 @@ public class DbManager {
         } catch (SQLException e) {
             LOG.error("Error al establecer la conexion con la Base de Datos [" + e.getMessage() + "]");
         }
+    }
+
+    public List<Alumno> mostrarAlumnos() {
+        List<Alumno> alumnos = null;
+
+        Statement staAlumnos = null;
+        ResultSet rstAlumnos = null;
+
+        if (con != null) {
+            try {
+                staAlumnos = con.createStatement();
+                rstAlumnos = staAlumnos.executeQuery("SELECT expediente, nombre, fecha_nac FROm alumnos");
+                LOG.debug("Se ha ejecutado correctamente la sentencia SELECT");
+            } catch (SQLException e) {
+                LOG.error("Error al consultar alumnos [" + e.getMessage() + "]");
+            } finally {
+                try {
+                    if (rstAlumnos != null)
+                        rstAlumnos.close();
+                    if (staAlumnos != null)
+                        staAlumnos.close();
+                } catch (SQLException e) {
+                    LOG.error("Error durante el cierre de la conexion [" + e.getMessage() + "]");
+                }
+            }
+        }
+
+        return alumnos;
     }
 
     public boolean cerrarBd() {
