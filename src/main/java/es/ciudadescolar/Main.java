@@ -1,7 +1,10 @@
 package es.ciudadescolar;
 
+import es.util.DbManager;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        DbManager manager = new DbManager();
+        manager.cerrarBd();
     }
 }
