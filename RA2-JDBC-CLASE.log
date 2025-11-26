@@ -24,3 +24,5 @@
 2025-11-26 09:45:32,384 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=3002, nombre=María, fecha_nac=null]
 2025-11-26 09:45:32,384 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=3003, nombre=Elena, fecha_nac=null]
 2025-11-26 09:45:32,388 [main] DEBUG es.util.DbManager                        - Conexion con la Base de Datos cerrada con exito
+2025-11-26 10:05:17,258 [main] ERROR es.util.DbManager                        - Error al establecer la conexion con la Base de Datos [Access denied for user 'dam2'@'114-12' (using password: YES)]
+2025-11-26 10:05:17,260 [main] WARN  es.util.DbManager                        - La conexion no esta establecida
