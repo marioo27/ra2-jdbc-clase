@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -36,6 +37,7 @@ public class DbManager {
 
     public List<Alumno> mostrarAlumnos() {
         List<Alumno> alumnos = null;
+        Alumno alumno = null;
 
         Statement staAlumnos = null;
         ResultSet rstAlumnos = null;
@@ -44,6 +46,22 @@ public class DbManager {
             try {
                 staAlumnos = con.createStatement();
                 rstAlumnos = staAlumnos.executeQuery("SELECT expediente, nombre, fecha_nac FROm alumnos");
+
+                if (rstAlumnos.next()) {
+                    alumnos = new ArrayList<>();
+                    do {
+                        alumno = new Alumno();
+                        // En el get del ResultSet se puede poner el indice o el nombre de la columna
+                        alumno.setExpediente(Integer.valueOf(rstAlumnos.getInt("expediente")));
+                        alumno.setNombre(rstAlumnos.getString("nombre"));
+                       
+                        if (rstAlumnos.getDate("fecha_nac") != null)
+                            alumno.setFecha_nac(rstAlumnos.getDate("fecha_nac").toLocalDate());
+                        
+                        alumnos.add(alumno);
+                    } while (rstAlumnos.next());
+                }
+
                 LOG.debug("Se ha ejecutado correctamente la sentencia SELECT");
             } catch (SQLException e) {
                 LOG.error("Error al consultar alumnos [" + e.getMessage() + "]");
@@ -57,7 +75,8 @@ public class DbManager {
                     LOG.error("Error durante el cierre de la conexion [" + e.getMessage() + "]");
                 }
             }
-        }
+        } else
+            LOG.warn("La conexion no esta establecida");
 
         return alumnos;
     }

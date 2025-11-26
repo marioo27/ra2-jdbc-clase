@@ -1,2 +1,26 @@
 2025-11-26 09:16:18,058 [main] DEBUG es.util.DbManager                        - Conexion establecida con exito
 2025-11-26 09:16:18,063 [main] DEBUG es.util.DbManager                        - Conexion con la Base de Datos cerrada con exito
+2025-11-26 09:43:06,468 [main] DEBUG es.util.DbManager                        - Conexion establecida con exito
+2025-11-26 09:44:30,253 [main] DEBUG es.util.DbManager                        - Conexion establecida con exito
+2025-11-26 09:45:32,342 [main] DEBUG es.util.DbManager                        - Conexion establecida con exito
+2025-11-26 09:45:32,379 [main] DEBUG es.util.DbManager                        - Se ha ejecutado correctamente la sentencia SELECT
+2025-11-26 09:45:32,380 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=1, nombre=Francisco, fecha_nac=1999-12-31]
+2025-11-26 09:45:32,381 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=2, nombre=Fermin, fecha_nac=2005-02-21]
+2025-11-26 09:45:32,381 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=3, nombre=Dario, fecha_nac=null]
+2025-11-26 09:45:32,381 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=4, nombre=Perico, fecha_nac=null]
+2025-11-26 09:45:32,381 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=5, nombre=Juan, fecha_nac=1991-04-23]
+2025-11-26 09:45:32,381 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=11, nombre=jose, fecha_nac=2024-11-28]
+2025-11-26 09:45:32,382 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=1001, nombre=Ramon, fecha_nac=null]
+2025-11-26 09:45:32,382 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=1002, nombre=Maria, fecha_nac=null]
+2025-11-26 09:45:32,382 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=1003, nombre=Elena, fecha_nac=null]
+2025-11-26 09:45:32,382 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=1009, nombre=paco, fecha_nac=2000-01-03]
+2025-11-26 09:45:32,382 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=1101, nombre=Ramon, fecha_nac=null]
+2025-11-26 09:45:32,382 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=1102, nombre=Maria, fecha_nac=null]
+2025-11-26 09:45:32,383 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=1103, nombre=Elena, fecha_nac=null]
+2025-11-26 09:45:32,383 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=2001, nombre=Ramón, fecha_nac=null]
+2025-11-26 09:45:32,383 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=2002, nombre=María, fecha_nac=null]
+2025-11-26 09:45:32,383 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=2003, nombre=Elena, fecha_nac=null]
+2025-11-26 09:45:32,383 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=3001, nombre=Ramón, fecha_nac=null]
+2025-11-26 09:45:32,384 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=3002, nombre=María, fecha_nac=null]
+2025-11-26 09:45:32,384 [main] INFO  es.ciudadescolar.Main                    - Alumno [expediente=3003, nombre=Elena, fecha_nac=null]
+2025-11-26 09:45:32,388 [main] DEBUG es.util.DbManager                        - Conexion con la Base de Datos cerrada con exito
